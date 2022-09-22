@@ -81,6 +81,7 @@ func postAddProject(w http.ResponseWriter, r *http.Request) {
 		"description": r.PostForm["description"],
 		"start-date": r.PostForm["start-date"],
 		"end-date": r.PostForm["end-date"],
+		"checkbox": r.PostForm["checkbox"],
 	}
 
 
