@@ -35,7 +35,7 @@
 	<body>
 		<header>
 			<nav
-				class="navbar navbar-expand-lg bg-light position-fixed w-100 shadow-lg"
+				class="navbar navbar-expand-lg bg-light position-fixed w-100 p-0 shadow-lg"
 			>
 				<div class="container-xl">
 					<a class="navbar-brand" href="/">
@@ -59,11 +59,17 @@
 					</button>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="#">Home</a>
+							<li class="nav-item h-100">
+								<a
+									class="nav-link active h-100"
+									aria-current="page"
+									href="/"
+									style="color: #75070e !important"
+									>Home</a
+								>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="/form-add-project">My Project</a>
+								<a class="nav-link" href="/form-add-project">Add Project</a>
 							</li>
 						</ul>
 						<form class="d-flex" action="/contact-me">
@@ -170,158 +176,47 @@
 
 		<!-- bloglist -->
 		<section
-			class="container-xl mt-5 d-flex flex-column align-items-center blog-list-container"
+			class="container-xl mt-5 d-flex flex-column align-items-center p-5 blog-list-container"
 		>
 			<h2>MY PROJECT</h2>
-			<div class="blog-card-container row w-100" id="blog-container">
-				<div class="card project-card col-4 mb-5 d-flex justify-content-around">
+			<div
+				class="project-card-container d-flex flex-wrap gap-5 w-100"
+				id="blog-container"
+			>
+				{{range $index, $data:= . }}
+				<div class="card project-card shadow p-2 d-flex justify-content-around">
 					<img src="/static/assets/image/character-1.webp" alt="" srcset="" />
 					<div class="title">
-						<h2>React APP</h2>
+						<h2>{{$data.Name}}</h2>
 						<p class="text-muted">Durasi: 3 bulan</p>
 					</div>
 					<div class="body">
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
-							obcaecati non quidem voluptate harum consequuntu
-						</p>
+						<p>{{$data.Description}}</p>
 					</div>
 					<div class="button-list d-flex gap-3">
+						{{range $tech := $data.Checkbox}}
+
 						<img
-							src="static/assets/icon/react.png"
+							src="static/assets/icon/{{$tech}}.png"
 							alt=""
 							width="25px"
 							height="25px"
 						/>
-						<img
-							src="static/assets/icon/react.png"
-							alt=""
-							width="25px"
-							height="25px"
-						/>
-						<img
-							src="static/assets/icon/react.png"
-							alt=""
-							width="25px"
-							height="25px"
-						/>
+						{{end}}
 					</div>
-					<div class="action d-flex gap-3">
-						<button class="btn button-fill">Edit</button>
-						<button class="btn btn-outline-danger">Delete</button>
+					<div class="action d-flex gap-3 align-self-center">
+						<form action="/project/{{$index}}" method="GET">
+							<button class="btn button-fill">Project detail</button>
+						</form>
+						<form action="/form-edit-project/{{$index}}" method="GET">
+							<button class="btn button-fill">Edit</button>
+						</form>
+						<form action="/delete-project/{{$index}}" method="POST">
+							<button class="btn btn-outline-danger">Delete</button>
+						</form>
 					</div>
 				</div>
-				<div class="card project-card col-4 mb-5 d-flex justify-content-around">
-					<img src="/static/assets/image/character-1.webp" alt="" srcset="" />
-					<div class="title">
-						<h2>React APP</h2>
-						<p class="text-muted">Durasi: 3 bulan</p>
-					</div>
-					<div class="body">
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
-							obcaecati non quidem voluptate harum consequuntu
-						</p>
-					</div>
-					<div class="button-list d-flex gap-3">
-						<img
-							src="static/assets/icon/react.png"
-							alt=""
-							width="25px"
-							height="25px"
-						/>
-						<img
-							src="static/assets/icon/react.png"
-							alt=""
-							width="25px"
-							height="25px"
-						/>
-						<img
-							src="static/assets/icon/react.png"
-							alt=""
-							width="25px"
-							height="25px"
-						/>
-					</div>
-					<div class="action d-flex gap-3">
-						<button class="btn button-fill">Edit</button>
-						<button class="btn btn-outline-danger">Delete</button>
-					</div>
-				</div>
-				<div class="card project-card col-4 mb-5 d-flex justify-content-around">
-					<img src="/static/assets/image/character-1.webp" alt="" srcset="" />
-					<div class="title">
-						<h2>React APP</h2>
-						<p class="text-muted">Durasi: 3 bulan</p>
-					</div>
-					<div class="body">
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
-							obcaecati non quidem voluptate harum consequuntu
-						</p>
-					</div>
-					<div class="button-list d-flex gap-3">
-						<img
-							src="static/assets/icon/react.png"
-							alt=""
-							width="25px"
-							height="25px"
-						/>
-						<img
-							src="static/assets/icon/react.png"
-							alt=""
-							width="25px"
-							height="25px"
-						/>
-						<img
-							src="static/assets/icon/react.png"
-							alt=""
-							width="25px"
-							height="25px"
-						/>
-					</div>
-					<div class="action d-flex gap-3">
-						<button class="btn button-fill">Edit</button>
-						<button class="btn btn-outline-danger">Delete</button>
-					</div>
-				</div>
-				<div class="card project-card col-4 mb-5 d-flex justify-content-around">
-					<img src="/static/assets/image/character-1.webp" alt="" srcset="" />
-					<div class="title">
-						<h2>React APP</h2>
-						<p class="text-muted">Durasi: 3 bulan</p>
-					</div>
-					<div class="body">
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
-							obcaecati non quidem voluptate harum consequuntu
-						</p>
-					</div>
-					<div class="button-list d-flex gap-3">
-						<img
-							src="static/assets/icon/react.png"
-							alt=""
-							width="25px"
-							height="25px"
-						/>
-						<img
-							src="static/assets/icon/react.png"
-							alt=""
-							width="25px"
-							height="25px"
-						/>
-						<img
-							src="static/assets/icon/react.png"
-							alt=""
-							width="25px"
-							height="25px"
-						/>
-					</div>
-					<div class="action d-flex gap-3">
-						<button class="btn button-fill">Edit</button>
-						<button class="btn btn-outline-danger">Delete</button>
-					</div>
-				</div>
+				{{end}}
 			</div>
 		</section>
 		<!-- bootstrap js -->

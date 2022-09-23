@@ -32,7 +32,7 @@
 			href="/static/assets/favicon/favicon-16x16.png"
 		/>
 		<link rel="manifest" href="/site.webmanifest" />
-		<title>Add Project</title>
+		<title>Edit project</title>
 	</head>
 	<body>
 		<header>
@@ -84,9 +84,9 @@
 		<section
 			class="form-container d-flex flex-column align-items-center justify-content-center"
 		>
-			<h1>ADD MY PROJECT</h1>
+			<h1>Update Project</h1>
 			<p id="error-message"></p>
-			<form action="/add-project" method="POST">
+			<form action="/update-project/{{.index}}" method="POST">
 				<div class="form-floating mb-3">
 					<input
 						type="text"
@@ -94,6 +94,7 @@
 						class="form-control shadow"
 						id="floatingInput"
 						placeholder="name@example.com"
+						value="{{.data.Name}}"
 					/>
 					<label for="floatingInput">Project Name</label>
 				</div>
@@ -102,12 +103,14 @@
 					<input
 						type="date"
 						name="start-date"
+						value="{{.data.StartDate}}"
 						aria-label="First name"
 						class="form-control"
 					/>
 					<input
 						type="date"
 						name="end-date"
+						value="{{.data.EndDate}}"
 						aria-label="Last name"
 						class="form-control"
 					/>
@@ -118,22 +121,28 @@
 						name="description"
 						placeholder="Leave a comment here"
 						id="floatingTextarea"
-					></textarea>
+					>
+					{{.data.Description}}
+					</textarea
+					>
 					<label for="floatingTextarea">Description</label>
 				</div>
 				<!-- CHECKBOX -->
 				<div class="chekbox d-flex gap-5 mb-3">
 					<div class="form-check form-check-inline">
+						{{range $checkbox := .data.Checkbox}}
 						<input
 							class="form-check-input shadow"
 							type="checkbox"
 							id="inlineCheckbox1"
 							value="nodejs"
 							name="checkbox"
+							checked="{{if $checkbox}} true {{else}} false {{end}}"
 						/>
 						<label class="form-check-label" for="inlineCheckbox1"
 							>Node JS</label
 						>
+						{{end}}
 					</div>
 					<div class="form-check form-check-inline">
 						<input
@@ -142,6 +151,7 @@
 							id="inlineCheckbox2"
 							value="reactjs"
 							name="checkbox"
+							checked="{{if $checkbox}} true {{else}} false {{end}}"
 						/>
 						<label class="form-check-label" for="inlineCheckbox2"
 							>React JS</label
@@ -176,7 +186,8 @@
 				<div class="mb-3">
 					<input class="form-control shadow" type="file" id="formFile" />
 				</div>
-				<button class="btn float-end">Submit</button>
+
+				<button class="btn float-end">Update</button>
 			</form>
 		</section>
 	</body>

@@ -28,8 +28,8 @@ nav {
 	width: 45%;
 }
 .image-card {
-	height: 85%;
-	width: 30%;
+	height: 350px;
+	width: 300px;
 	background-color: #dbdddf;
 }
 .image-card img {
@@ -39,6 +39,7 @@ nav {
 /*  */
 
 .project-card {
+	width: 30%;
 	height: 600px;
 }
 
@@ -66,6 +67,9 @@ nav {
 .nav-link {
 	color: #f06e79 !important;
 	font-weight: bolder;
+}
+.nav-link:hover {
+	color: #75070e !important;
 }
 .nav-justify {
 	justify-content: space-around !important;
